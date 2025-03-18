@@ -5,10 +5,10 @@ import {
   selectFilteredContacts,
   selectContactsLoading,
   selectContactsError,
-} from "../../redux/contactsSlice"; // Changed import
+} from "../../redux/contactsSlice";
 
 const ContactList = () => {
-  const contacts = useSelector(selectFilteredContacts); // Use the memoized selector
+  const contacts = useSelector(selectFilteredContacts);
   const loading = useSelector(selectContactsLoading);
   const error = useSelector(selectContactsError);
 

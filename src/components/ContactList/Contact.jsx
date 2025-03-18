@@ -1,12 +1,11 @@
 import styles from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsOps"; // Changed import
-
+import { deleteContact } from "../../redux/contactsOps";
 const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteContact(id)); // Dispatch the thunk
+    dispatch(deleteContact(id));
   };
 
   return (
