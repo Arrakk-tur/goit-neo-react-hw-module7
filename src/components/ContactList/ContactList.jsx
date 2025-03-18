@@ -1,21 +1,24 @@
 import { useSelector } from "react-redux";
 import Contact from "./Contact";
 import styles from "./ContactList.module.css";
-import { selectContacts } from "../../redux/contactsSlice";
-import { selectFilterName } from "../../redux/filtersSlice"; // Changed selector name
-import { createSelector } from "@reduxjs/toolkit";
-
-const selectFilteredContacts = createSelector(
-  [selectContacts, selectFilterName],
-  (contacts, filter) => {
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  }
-);
+import {
+  selectFilteredContacts,
+  selectContactsLoading,
+  selectContactsError,
+} from "../../redux/contactsSlice"; // Changed import
 
 const ContactList = () => {
-  const contacts = useSelector(selectFilteredContacts);
+  const contacts = useSelector(selectFilteredContacts); // Use the memoized selector
+  const loading = useSelector(selectContactsLoading);
+  const error = useSelector(selectContactsError);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <ul className={styles.contactList}>
